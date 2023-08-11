@@ -15,9 +15,12 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { SetCurrentUserContext } from "../../App";
 
 const SignInForm = () => {
+    const setCurrentUser = useContext(SetCurrentUserContext);
+
     const [signInData, setSignInData] = useState({
         username: "",
         password: "",
@@ -38,7 +41,8 @@ const SignInForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post('/dj-rest-auth/login/', signInData);
+            const {data} = await axios.post('/dj-rest-auth/login/', signInData);
+            setCurrentUser(data.user);
             history.push('/');
         } catch(err) {
             setErrors(err.response?.data);
