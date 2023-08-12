@@ -15,11 +15,11 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 import axios from 'axios';
-import { useState, useContext } from 'react';
-import { SetCurrentUserContext } from "../../App";
+import { useState } from 'react';
+import { useSetCurrentUser } from "../../contexts/CurrentUserContexts";
 
 const SignInForm = () => {
-    const setCurrentUser = useContext(SetCurrentUserContext);
+    const setCurrentUser = useSetCurrentUser();
 
     const [signInData, setSignInData] = useState({
         username: "",
