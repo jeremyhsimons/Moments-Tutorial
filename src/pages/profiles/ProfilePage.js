@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 
 import Asset from "../../components/Asset";
 import Post from "../posts/Post";
+import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
@@ -55,6 +56,7 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
+      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image className={styles.ProfileImage} roundedCircle src={profile?.image}/>
